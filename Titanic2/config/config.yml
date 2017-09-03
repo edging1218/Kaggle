@@ -17,6 +17,10 @@ model:
       n_estimators: 10
       max_depth: 3
       learning_rate: 0.02
+  knn32:
+      n_neighbors: 32
+  knn64:
+      n_neighbors: 32
   adaboost:
       n_estimators: 10
       learning_rate: 0.5

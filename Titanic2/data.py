@@ -29,12 +29,19 @@ class Data():
         self.train_size = self.train.shape
         self.test_size = self.test.shape
 
-    def peek(self):
+    def data_info(self):
         """
         Peek at the train and test data
         """
         self.train.info()
         self.test.info()
+
+    def peek(self, line=5):
+        """
+        Peek at the train and test data
+        """
+        self.train.head(line)
+        self.test.head(line)
 
     def write_submission(self, pred):
         """

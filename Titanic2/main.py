@@ -19,15 +19,16 @@ if __name__ == '__main__':
 
     # create model
     model_xgb = Model(features, 'xgb', param['model'])
+    model_knn32 = Model(features, 'knn32', param['model'])
     # pred = model.grid_search('accuracy', 5)
 
-    model_list = [model_xgb]
+    model_list = [model_xgb, model_knn32]
 
     stack_model_xgb = Model(features, 'xgb', param['stack_model'])
     stack_model_list = [stack_model_xgb]
 
-    stack = Stacker(features, 3, model_list, stack_model_list)
-    stack.print_res()
+    stack = Stacker(features, 3, model_list, stack_model_list, 2)
+    # stack.print_res()
 
     # write submission file
     # data.write_submission(pred)
