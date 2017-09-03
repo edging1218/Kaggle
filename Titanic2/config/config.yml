@@ -1,0 +1,30 @@
+features:
+  # good: import directly
+  # fit_transform: map to integer number (0,1,2,...) by LabelEncoder()
+  # fill with mean: fillna with the mean of feature value
+  # feature_scaling
+  Pclass: 'good'
+  Sex: 'get_dummies'
+  Age: 'fillna'
+  SibSp: 'good'
+  Parch: 'good'
+  Fare: 'fillna'
+  Embarked: 'get_dummies'
+
+
+model:
+  xgb:
+      n_estimators: 10
+      max_depth: 3
+      learning_rate: 0.02
+  adaboost:
+      n_estimators: 10
+      learning_rate: 0.5
+  xgb_grid:
+      n_estimators: [20, 30]
+      learning_rate: [0.5, 1]
+
+stack_model:
+  xgb:
+      n_estimators: 10
+      max_depth: 3
