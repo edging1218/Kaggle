@@ -31,22 +31,28 @@ class Data():
 
     def data_info(self):
         """
-        Peek at the train and test data
+        Info of train and test data
         """
+        print '\nTrain:\n{}\n'.format('-' * 50)
         self.train.info()
+        print '\nTest:\n{}\n'.format('-' * 50)
         self.test.info()
 
-    def peek(self, line=5):
+
+    def data_peek(self):
         """
         Peek at the train and test data
         """
-        self.train.head(line)
-        self.test.head(line)
+        print '\nTrain:\n{}\n'.format('-'*50)
+        print self.train.head()
+        print '\nTest:\n{}\n'.format('-'*50)
+        print self.test.head()
 
-    def write_submission(self, pred):
+    def write_submission(self, pred, filename='submission.csv'):
         """
         Write submission file in train and test data
         """
+        self.output_path = 'submission/' + filename
         idx = np.array(self.test[self.output_id]).astype(int)
         my_solution = pd.DataFrame(pred, idx, columns=[self.target])
         my_solution.to_csv(self.output_path, index_label=[self.output_id])

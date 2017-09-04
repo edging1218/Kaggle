@@ -1,5 +1,5 @@
 import yaml
-
+import pprint
 
 def read_config():
     """
@@ -8,5 +8,5 @@ def read_config():
     paths = 'config/config.yml'
     with open(paths, 'r') as f:
         config = yaml.load(f)
-    print config
+    pprint.pprint(config)
     return config

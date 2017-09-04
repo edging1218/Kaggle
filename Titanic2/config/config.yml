@@ -2,33 +2,83 @@ features:
   # good: import directly
   # fit_transform: map to integer number (0,1,2,...) by LabelEncoder()
   # fill with mean: fillna with the mean of feature value
+  # get_dummies: create dummies
   # feature_scaling
   Pclass: 'good'
   Sex: 'get_dummies'
-  Age: 'fillna'
+  Age: 'fillna_scale'
   SibSp: 'good'
   Parch: 'good'
-  Fare: 'fillna'
+  Fare: 'fillna_scale'
   Embarked: 'get_dummies'
+  Cabin: 'first_letter'
+  Name: 'title'
 
 
 model:
   xgb:
-      n_estimators: 10
+      n_estimators: 150
       max_depth: 3
-      learning_rate: 0.02
+      learning_rate: 0.2
+      gamma: 0.1
+      min_child_weight: 0.5
+      subsample: 0.6
   knn32:
       n_neighbors: 32
   knn64:
-      n_neighbors: 32
-  adaboost:
-      n_estimators: 10
-      learning_rate: 0.5
+      n_neighbors: 64
+  knn128:
+      n_neighbors: 128
+  rf:
+      n_estimators: 150
+      max_features: 'sqrt'
+      min_samples_split: 3
+      min_samples_leaf: 45
+  logit:
+      C: 0.525
+  svm:
+      C: 0.75
+      probability: True
+
   xgb_grid:
-      n_estimators: [20, 30]
-      learning_rate: [0.5, 1]
+      n_estimators: [150]
+      learning_rate: [0.2]
+      max_depth: [3]
+      gamma: [0.1]
+      min_child_weight: [0.5]
+      subsample: [0.6]
+  rf_grid:
+      n_estimators: [150]
+      max_features: ['sqrt']
+      min_samples_split: [2, 3]
+      min_samples_leaf: [45, 50, 55]
+  logit_grid:
+      C: [0.45, 0.475, 0.525, 0.55]
+  svm_grid:
+      C: [0.6, 0.7, 0.8, 0.9]
+      kernel: ['rbf']
+
 
 stack_model:
   xgb:
-      n_estimators: 10
-      max_depth: 3
+      n_estimators: 15
+      #learning_rate: 0.15
+      max_depth: 1
+      #gamma: 0.07
+      #subsample: 0.7
+  svm:
+      C: 0.4
+  logit:
+      C: 0.45
+  xgb_grid:
+      n_estimators: [15]
+      learning_rate: [0.15]
+      max_depth: [1]
+      gamma: [0.04, 0.05, 0.06]
+      #min_child_weight: [0.6]
+      subsample: [0.65, 0.7, 0.75]
+
+  logit_grid:
+      C: [0.4, 0.45, 0.5, 0.55, 0.6, 0.65]
+  svm_grid:
+      C: [0.3, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5]
