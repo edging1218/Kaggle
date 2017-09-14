@@ -1,0 +1,52 @@
+model:
+  xgb:
+      n_estimators: 150
+      max_depth: 3
+      learning_rate: 0.2
+      gamma: 0.1
+      min_child_weight: 0.5
+      subsample: 0.6
+  knn32:
+      n_neighbors: 32
+  knn64:
+      n_neighbors: 64
+  knn128:
+      n_neighbors: 128
+  rf:
+      n_estimators: 150
+      max_features: 'sqrt'
+      min_samples_split: 3
+      min_samples_leaf: 45
+  logit:
+      C: 0.525
+  svm:
+      C: 0.75
+      probability: True
+  sgd:
+      loss: 'log'
+      penalty: 'l1'
+      alpha: 0.001
+
+  xgb_grid:
+      n_estimators: [150, 200]
+      learning_rate: [0.2]
+      max_depth: [3]
+      gamma: [0.1]
+      min_child_weight: [0.5]
+      subsample: [0.6]
+  sgd_grid:
+      loss: ['log']
+      penalty: ['l1', 'l2', 'elasticnet']
+      alpha: [0, 0.00001, 0.0001, 0.001, 0.01, 0.1]
+  rf_grid:
+      n_estimators: [150]
+      max_features: ['sqrt']
+      min_samples_split: [2, 3]
+      min_samples_leaf: [45, 50, 55]
+  logit_grid:
+      C: [0.45, 0.475, 0.525, 0.55]
+  svm_grid:
+      C: [0.6, 0.7, 0.8, 0.9]
+      kernel: ['rbf']
+
+
