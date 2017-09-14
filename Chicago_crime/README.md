@@ -1,0 +1,1 @@
+Relying on the data imported from the Chicago Data Portal, this project analyzed the crimes situation in Chicago for the past two years (2015-2016) and made predications of crime category based on the time and location, using logistic regression and xgboost machine learning algorithm.
